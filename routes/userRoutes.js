@@ -14,13 +14,13 @@ const {
 
 router
   .route("/")
-  .get(authenticateUser, authorizePermisions("admin", "user"), getAllUsers);
+  .get(authenticateUser, authorizePermisions("admin"), getAllUsers);
 
-router.route("/showMe").get(showCurrentUser);
+router.route("/showMe").get(authenticateUser, showCurrentUser);
 
 router.route("/updateUser").patch(updateUser);
 
-router.route("/updateUserPassword").patch(updateUserPassword);
+router.route("/updateUserPassword").patch(authenticateUser, updateUserPassword);
 
 router.route("/:id").get(authenticateUser, getSingleUser);
 
