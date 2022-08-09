@@ -15,6 +15,7 @@ const connectDB = require("./db/connect");
 
 // routers
 const authRouter = require("./routes/authRoutes");
+const userRouter = require("./routes/userRoutes");
 
 //  middleware
 const notFoundMiddleware = require("./middleware/not-found");
@@ -24,11 +25,8 @@ app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
-app.get("/api/v1", (req, res) => {
-  console.log(req.signedCookies);
-  res.send("E-commerece");
-});
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", userRouter);
 
 // custom middleware
 app.use(notFoundMiddleware);
