@@ -9,6 +9,7 @@ const app = express();
 // rest of the packages
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
+const fileUpload = require("express-fileupload");
 
 // database
 const connectDB = require("./db/connect");
@@ -25,6 +26,8 @@ const errorHandlerMiddleware = require("./middleware/error-handler");
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
+app.use(fileUpload());
+app.use(express.static("./public"));
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
