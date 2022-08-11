@@ -56,7 +56,7 @@ const updateReview = async (req, res) => {
   review.comment = comment;
 
   await review.save();
-  res.status(StatusCodes.OK).json({ msg: "Success! Review removed" });
+  res.status(StatusCodes.OK).json({ msg: "Success", review });
 };
 const deleteReview = async (req, res) => {
   const { id: reviewId } = req.params;
