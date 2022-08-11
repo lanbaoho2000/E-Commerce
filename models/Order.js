@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const SingleCartSchema = new Schema({
+const SingleOrderSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -43,7 +43,7 @@ const OrderSchema = new Schema(
       type: Number,
       required: true,
     },
-    cardItems: [SingleCartSchema],
+    orderItems: [SingleOrderSchema],
     status: {
       type: String,
       enum: ["pending", "failed", "paid", "delivered", "canceled"],
@@ -56,7 +56,6 @@ const OrderSchema = new Schema(
     },
     clientSecret: {
       type: String,
-      required: true,
     },
     paymentIntentId: {
       type: String,
